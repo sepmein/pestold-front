@@ -1,0 +1,17 @@
+<div class="container">
+  <div ng-include="'components/navbar/navbar.html'"></div>
+  <p>已注册<a href="/#/auth">登录</a></p>
+  <form>
+    <div class="form-group">
+      <label for="inputUserName">User Name</label>
+      <input type="text" class="form-control" id="inputUserName" placeholder="Enter User Name" ng-model="userName">
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Password</label>
+      <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="password">
+    </div>
+    <button class="btn btn-default" ng-click="auth()">Submit</button>
+  </form>
+
+  <p ng-if="errorMessage">{{errorMessage}}</p>
+</div>

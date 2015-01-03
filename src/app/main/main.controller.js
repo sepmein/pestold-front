@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('pestoldFront2')
+angular.module('pestoldFront')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       {
