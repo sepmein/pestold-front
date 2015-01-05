@@ -2,11 +2,21 @@
   <div ng-include="'components/navbar/navbar.html'"></div>
   <section class="row">
     <div class="col-md-8">
-      <form id="in" class="well form-horizontal">
+      <form action="?" class="well form-horizontal">
         <fieldset>
           <legend>原药</legend>
           <div class="controlgroup">
-            <label for="concentrationRaw" class="control-label focused">原药浓度</label>
+            <label for="originalMedicine" class="control-label focused">名称</label>
+
+            <div class="controls">
+              <div class="input-append">
+                <input ng-model="originalMedicine" id="originalMedicine" type="text" name="originalMedicine"
+                       required="required" class="span2"/><span class="add-on"></span>
+              </div>
+            </div>
+          </div>
+          <div class="controlgroup">
+            <label for="concentrationRaw" class="control-label">原药浓度</label>
 
             <div class="controls">
               <div class="input-append">
@@ -17,6 +27,12 @@
               <p class="help-block">原药的有效含量</p>
             </div>
           </div>
+          <div class="controlgroup">
+            <label for="description" class="control-label">简介</label>
+            <textarea ng-model="description" name="description" id="description" rows="2"
+                      class="form-control" placeholder="关于本次试验的简单介绍"></textarea>
+          </div>
+
         </fieldset>
         <fieldset>
           <legend>配制浓度</legend>
@@ -82,7 +98,7 @@
               <p class="help-block">任意相邻两终浓度组之间的浓度比</p>
             </div>
           </div>
-          <div class="form-actions"><a id="sub" data-toggle="modal" data-target="#alertModal"
+          <div class="controlgroup"><a id="sub" data-toggle="modal" data-target="#alertModal"
                                        class="btn btn-large btn-primary"><i class='icon-pencil icon-white'></i>
             计算</a>&nbsp;&nbsp;&nbsp;<a href="/vec" class="cancel btn btn-large"><i class='icon-remove icon-white'></i>
             取消</a>
@@ -106,8 +122,8 @@
                     <p>Vec会继续改进以提高正确性。</p>
                   </div>
                   <div class="modal-footer">
-                    <button class="btn btn-default" type="button" data-dismiss="modal">关闭</button>
-                    <button class="btn btn-primary" type="button" ng-click="submitRequest()">同意并继续</button>
+                    <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button class="btn btn-primary" ng-click="submitRequest()">同意并继续</button>
                   </div>
                 </div>
               </div>

@@ -1,11 +1,12 @@
 /**
  * Created by Spencer on 15/1/5.
  */
+'use strict';
 
 angular.module('Vec').controller('VecRecipeCtrl', ['$scope', '$http', '$routeParams',
   function ($scope, $http, $routeParams) {
     $scope.id = $routeParams.id;
-    $http.get('localhost:3000/vec/recipe/' + id)
+    $http.get('http://localhost:4000/vec/recipe/' + $scope.id)
       .success(function (data, status, headers, config) {
         computeOutput(data);
       })

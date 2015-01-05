@@ -28,16 +28,18 @@
             <h6>详细过程：</h6>
             <ol>
               <li>从浓度为<code>{{raw.c.data}}%</code> 的原药中吸取<code>{{raw.d.data}} {{raw.d.unit}}</code>药剂。</li>
-              <li>加稀释液定容至<code>1 mL</code>，配制成浓度为<code>{{middle.c[0].data}} {{middle.c[0].unit}}</code>的母液。</li>
+              <li>加稀释液定容至<code>1mL</code>，配制成浓度为<code>{{middle.c[0].data}} {{middle.c[0].unit}}</code>的母液。</li>
             </ol>
           </div>
         </div>
         <div id="middle">
           <h4>#中间过程</h4>
           <h5>稀释过程是将母液按每级10倍逐级稀释，直至接近终浓度的过程。</h5>
-          <h5>从上级浓度的药液中取出<code>{{middle.dTake.data}} {{middle.dTake.unit}}</code>，稀释至<code>{{middle.d.data}} {{middle.d.unit}}</code>。该过程重复<code>{{middle.dt-1}}</code>
+          <h5>从上级浓度的药液中取出<code>{{middle.dTake.data}} {{middle.dTake.unit}}</code>，稀释至<code>{{middle.d.data}}
+            {{middle.d.unit}}</code>。该过程重复<code>{{middle.dt-1}}</code>
             次。</h5>
-          <h5><code>{{middle.dt-1}}</code> 次后，从最后一次所配制的中浓度药剂中取出<code>{{middle.dTakeLast.data}} {{middle.dTakeLast.unit}}</code>，加稀释液定容至<code>{{end.dp.data}}
+          <h5><code>{{middle.dt-1}}</code> 次后，从最后一次所配制的中浓度药剂中取出<code>{{middle.dTakeLast.data}}
+            {{middle.dTakeLast.unit}}</code>，加稀释液定容至<code>{{end.dp.data}}
             {{end.dp.unit}}</code>，配制成最高浓度的终浓度药剂。</h5>
           <h5>所需工具：移液管，容量瓶</h5>
 
@@ -45,9 +47,11 @@
             <h6>详细过程：</h6>
             <ol>
               <li ng-repeat="c in middle.c">
-                从浓度为<code>{{c.data}} {{c.unit}}</code>的药液中，吸取<code>{{middle.dTakeLast.data
-                middle.dTakeLast.unit}}</code>，加稀释液定容至<code>{{end.dp.data}} {{end.dp.unit}}</code>，从而配制成终浓度为<code>{{end.ch.data
-                end.ch.unit}}</code>的溶剂。
+                <span ng-if="!$last">从浓度为<code>{{c.data}} {{c.unit}}</code>的药液中，吸取<code>{{middle.dTake.data}}
+                  {{middle.dTake.unit}}</code>，加稀释液定容至<code>{{middle.d.data}} {{middle.d.unit}}.</code></code></span>
+                <span ng-if="$last">从浓度为<code>{{c.data}} {{c.unit}}</code>的药液中，吸取<code>{{middle.dTakeLast.data}}
+                  {{middle.dTakeLast.unit}}</code>，加稀释液定容至<code>{{end.dp.data}} {{end.dp.unit}}</code>，从而配制成终浓度为<code>{{end.ch.data}}
+                  {{end.ch.unit}}</code>的溶剂。</span>
               </li>
             </ol>
           </div>
@@ -56,18 +60,22 @@
           <h4>#终浓度配制</h4>
           <h5>终浓度配制过程是配置药剂的最后一步，将中间过程稀释的药剂配制成实验所需的浓度；配置成的终浓度药剂需要保存以便后用。</h5>
           <h5>该过程需要配制<code>{{end.gn}}</code> 种浓度的药剂。</h5>
-          <h5>药剂的浓度分别为<code>{{c.data}} {{c.unit}}</code></h5>
+          <h5>药剂的浓度分别为<code ng-repeat="c in end.c">{{c.data}} {{c.unit}}{{($last)?"。":"，"}}</code></h5>
           <h5>其组间比值为<code>{{end.pr}}</code>，每组溶剂配制<code>{{end.d.data}} {{end.d.unit}}</code></h5>
-          <h5>配置时需要从上级浓度中吸取<code>{{end.dTake.data}} {{end.dTake.unit}}</code>，稀释至<code>{{end.dp.data
-            end.dp.unit}}</code>。该过程需重复<code>{{end.c.length}}</code>次。
+          <h5>配置时需要从上级浓度中吸取<code>{{end.dTake.data}} {{end.dTake.unit}}</code>，稀释至<code>{{end.dp.data}}
+            {{end.dp.unit}}</code>。该过程需重复<code>{{end.c.length}}</code>次。
           </h5>
           <h5>所需工具：移液管，容量瓶，保存瓶</h5>
 
           <div class="process">
             <h6>详细过程：</h6>
             <ol>
-              <li>从浓度为<code>{{c.data}} {{c.unit}}</code>的药液中，吸取<code>{{end.dTake.data}} {{end.dTake.unit}}</code>，加稀释液定容至<code>{{end.dp.data
-                end.dp.unit}}</code>。
+              <li ng-repeat="c in end.c">
+                <span ng-if="!$last">从浓度为<code>{{c.data}} {{c.unit}}</code>的药液中，吸取<code>{{end.dTake.data}}
+                  {{end.dTake.unit}}</code>，加稀释液定容至<code>{{end.dp.data}}
+                  {{end.dp.unit}}</code>。</span>
+                <span ng-if="$last">从浓度为<code>{{c.data}} {{c.unit}}</code>的药液中，吸取<code>{{end.dTake.data}}
+                  {{end.dTake.unit}}</code>的废液，完成整个配制过程。</span>
               </li>
             </ol>
           </div>
