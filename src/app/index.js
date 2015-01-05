@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pestoldFront', ['ngAnimate', 'ngStorage', 'ngTouch', 'ngSanitize', 'ngResource', 'ngRoute', 'ui.bootstrap', 'Vec'])
-  .config(function ($routeProvider) {
+  .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'app/main/main.html',
@@ -20,18 +20,19 @@ angular.module('pestoldFront', ['ngAnimate', 'ngStorage', 'ngTouch', 'ngSanitize
         templateUrl: 'app/vec/vec.html',
         controller: 'VecCtrl'
       })
-      //.when('/vec/start', {
-      //  templateUrl: 'app/vec/start/start.html',
-      //  controller: 'VecStartCtrl'
-      //})
-      //.when('/vec/recipe/:id', {
-      //  templateUrl: 'app/vec/recipe/recipe.html',
-      //  controller: 'VecRecipeCtrl'
-      //})
+      .when('/vec/start', {
+        templateUrl: 'app/vec/start/vec.start.html',
+        controller: 'VecStartCtrl'
+      })
+      .when('/vec/recipe/:id', {
+        templateUrl: 'app/vec/recipe/vec.recipe.html',
+        controller: 'VecRecipeCtrl'
+      })
       //.when('/vec/recipe/all')
       //.when('/vec/recipe/my')
       .otherwise({
         redirectTo: '/'
       });
-  })
+    $httpProvider.interceptors.push('bearTokenInterceptor');
+  }])
 ;

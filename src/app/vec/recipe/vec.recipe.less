@@ -1,0 +1,137 @@
+.recipe {
+  #holder {
+    padding-top: 65px;
+    width: 300px;
+    height: 150px;
+  }
+
+  #guide {
+    position: absolute;
+    left: 515px;
+    top: 100px;
+  }
+
+  #guide a {
+    font-size: 1.15em;
+  }
+
+  p.speech {
+    position: relative;
+    top: -180px;
+    left: 200px;
+    display: none;
+    width: 45px;
+    height: 18px;
+    border: 1px solid #666;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #c8c8c8;
+    color: #969696;
+    text-align: center;
+  }
+
+  p.speech:after {
+    position: absolute;
+    top: 18px;
+    left: 8px;
+    width: 0;
+    height: 0;
+    border: 3px solid;
+    border-color: #c8c8c8 transparent transparent #c8c8c8;
+    content: ' ';
+  }
+
+  #errMessage {
+    display: none;
+  }
+  .center {
+    text-align: center;
+  }
+  kbd, .key {
+    display: inline;
+    display: inline-block;
+    min-width: 1em;
+    padding: .2em .3em;
+    font: normal .85em/1 "Lucida Grande", Lucida, Arial, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    -moz-border-radius: .3em;
+    -webkit-border-radius: .3em;
+    border-radius: .3em;
+    border: none;
+    cursor: default;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    font-size: 1.03em;
+  }
+  kbd[title], .key[title] {
+    cursor: help;
+  }
+
+  /* Dark style for display on light background. This is the default style. */
+  kbd, kbd.dark, .dark-keys kbd, .key, .key.dark, .dark-keys .key {
+    background: rgb(80, 80, 80);
+    background: -moz-linear-gradient(top, rgb(60, 60, 60), rgb(80, 80, 80));
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(60, 60, 60)), to(rgb(80, 80, 80)));
+    color: rgb(250, 250, 250);
+    text-shadow: -1px -1px 0 rgb(70, 70, 70);
+    -moz-box-shadow: inset 0 0 1px rgb(150, 150, 150), inset 0 -.05em .4em rgb(80, 80, 80), 0 .1em 0 rgb(30, 30, 30), 0 .1em .1em rgba(0, 0, 0, .3);
+    -webkit-box-shadow: inset 0 0 1px rgb(150, 150, 150), inset 0 -.05em .4em rgb(80, 80, 80), 0 .1em 0 rgb(30, 30, 30), 0 .1em .1em rgba(0, 0, 0, .3);
+    box-shadow: inset 0 0 1px rgb(150, 150, 150), inset 0 -.05em .4em rgb(80, 80, 80), 0 .1em 0 rgb(30, 30, 30), 0 .1em .1em rgba(0, 0, 0, .3);
+  }
+
+  /* Light style for display on dark background. */
+  kbd.light, .light-keys kbd, .key.light, .light-keys .key {
+    background: rgb(250, 250, 250);
+    background: -moz-linear-gradient(top, rgb(210, 210, 210), rgb(255, 255, 255));
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(210, 210, 210)), to(rgb(255, 255, 255)));
+    color: rgb(50, 50, 50);
+    text-shadow: 0 0 2px rgb(255, 255, 255);
+    -moz-box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
+    -webkit-box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
+    box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
+  }
+
+  .processHead, #main h4 {
+    font-size: 1.5em;
+    margin-top: 1.7em;
+    margin-bottom: 1.5em;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+  }
+  .processHead:hover, #main h4:hover {
+    color: #268ABB;
+  }
+  #main h5, #main h6 {
+    font-size: 1.18em;
+    text-indent: 3em;
+    line-height: 1.6em;
+    font-weight: normal;
+  }
+  #main h6 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+  #main ol {
+    padding-left: 4em;
+  }
+  #next .span12 {
+    margin-bottom: 30px;
+  }
+  #next h4 {
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 8px;
+  }
+  #next h5 {
+    color: rgb(100, 100, 100);
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 8px;
+  }
+}

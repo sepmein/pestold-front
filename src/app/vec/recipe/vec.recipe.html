@@ -1,0 +1,134 @@
+<div class="recipe">
+  <div ng-include="'components/navbar/navbar.html'"></div>
+  <header class="container">
+    <div class="row">
+      <div id="holder" class="col-md-4">
+        <p class="speech">测试版</p>
+      </div>
+      <div id="guide" class="col-md-8">
+        <ul class="nav nav-pills">
+          <li><a ng-href="#/vec/recipe/{{id}}/#motherliquid">母液配制</a></li>
+          <li><a ng-href="#/vec/recipe/{{id}}/#middle">中间稀释</a></li>
+          <li><a ng-href="#/vec/recipe/{{id}}/#final">终浓度配置</a></li>
+          <li><a ng-href="#/vec/recipe/{{id}}/#next">下一步</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <section id="main" class="row">
+      <div class="col-md-12">
+        <div id="motherliquid">
+          <h4>#母液配制</h4>
+          <h5>母液配制是将<code>{{raw.c.data}}%</code>原药配置成<code>1%</code>母液的过程。</h5>
+          <h5>完成该步骤后，再根据需要将母液逐级稀释成合适的浓度。</h5>
+          <h5>所需工具：原药，电子天秤</h5>
+
+          <div class="process">
+            <h6>详细过程：</h6>
+            <ol>
+              <li>从浓度为<code>{{raw.c.data}}%</code> 的原药中吸取<code>{{raw.d.data}} {{raw.d.unit}}</code>药剂。</li>
+              <li>加稀释液定容至<code>1 mL</code>，配制成浓度为<code>{{middle.c[0].data}} {{middle.c[0].unit}}</code>的母液。</li>
+            </ol>
+          </div>
+        </div>
+        <div id="middle">
+          <h4>#中间过程</h4>
+          <h5>稀释过程是将母液按每级10倍逐级稀释，直至接近终浓度的过程。</h5>
+          <h5>从上级浓度的药液中取出<code>{{middle.dTake.data}} {{middle.dTake.unit}}</code>，稀释至<code>{{middle.d.data}} {{middle.d.unit}}</code>。该过程重复<code>{{middle.dt-1}}</code>
+            次。</h5>
+          <h5><code>{{middle.dt-1}}</code> 次后，从最后一次所配制的中浓度药剂中取出<code>{{middle.dTakeLast.data}} {{middle.dTakeLast.unit}}</code>，加稀释液定容至<code>{{end.dp.data}}
+            {{end.dp.unit}}</code>，配制成最高浓度的终浓度药剂。</h5>
+          <h5>所需工具：移液管，容量瓶</h5>
+
+          <div class="process">
+            <h6>详细过程：</h6>
+            <ol>
+              <li ng-repeat="c in middle.c">
+                从浓度为<code>{{c.data}} {{c.unit}}</code>的药液中，吸取<code>{{middle.dTakeLast.data
+                middle.dTakeLast.unit}}</code>，加稀释液定容至<code>{{end.dp.data}} {{end.dp.unit}}</code>，从而配制成终浓度为<code>{{end.ch.data
+                end.ch.unit}}</code>的溶剂。
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div id="final">
+          <h4>#终浓度配制</h4>
+          <h5>终浓度配制过程是配置药剂的最后一步，将中间过程稀释的药剂配制成实验所需的浓度；配置成的终浓度药剂需要保存以便后用。</h5>
+          <h5>该过程需要配制<code>{{end.gn}}</code> 种浓度的药剂。</h5>
+          <h5>药剂的浓度分别为<code>{{c.data}} {{c.unit}}</code></h5>
+          <h5>其组间比值为<code>{{end.pr}}</code>，每组溶剂配制<code>{{end.d.data}} {{end.d.unit}}</code></h5>
+          <h5>配置时需要从上级浓度中吸取<code>{{end.dTake.data}} {{end.dTake.unit}}</code>，稀释至<code>{{end.dp.data
+            end.dp.unit}}</code>。该过程需重复<code>{{end.c.length}}</code>次。
+          </h5>
+          <h5>所需工具：移液管，容量瓶，保存瓶</h5>
+
+          <div class="process">
+            <h6>详细过程：</h6>
+            <ol>
+              <li>从浓度为<code>{{c.data}} {{c.unit}}</code>的药液中，吸取<code>{{end.dTake.data}} {{end.dTake.unit}}</code>，加稀释液定容至<code>{{end.dp.data
+                end.dp.unit}}</code>。
+              </li>
+            </ol>
+          </div>
+        </div>
+        <hr/>
+      </div>
+    </section>
+    <section id="next" class="row">
+      <div class="col-md-12">
+        <h2 class="processHead">#下一步</h2>
+
+        <div class="center">
+          <h6>in the cloud</h6><img src="/assets/images/vec/cloudlumina200.png" width="200" height="200"/>
+
+          <p>该配方已储存在云端，只需访问下面地址便可找回该配方：</p>
+
+          <p>唯一地址： <a id='url' rel='bookmark'></a></p>
+          <h4>接下来，您还可以：</h4>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h4>打印配制过程</h4>
+        <h5>带它去实验室，或者……</h5>
+
+        <div class="content center">
+          <p>windows: <kbd>Ctrl</kbd> + <kbd>P</kbd></p>
+
+          <p>mac: <kbd class="light">Cmd</kbd> + <kbd class="light">P</kbd></p>
+          <h6>-- OR --</h6>
+
+          <p>浏览器菜单 - 打印预览</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h4>添加书签</h4>
+        <h5>找回配方的好方法</h5>
+
+        <div class="content center">
+          <p>windows: <kbd>Ctrl</kbd> + <kbd>D</kbd></p>
+
+          <p>mac: <kbd class="light">Cmd</kbd> + <kbd class="light">D</kbd></p>
+          <h6>-- OR --</h6>
+
+          <p>浏览器菜单 - 添加书签</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h4>发送至邮箱</h4>
+        <h5>将配方的唯一地址发送至邮箱</h5>
+        <h5>分享、保存该配方的好方法</h5>
+
+        <div class="content center">
+          <form id="send" class="form-inline">
+            <div class="input-prepend input-append"><span class="add-on"><i class='icon-envelope'></i></span>
+              <input id="sendTo" type="email" placeholder="email" class="col-md-2"/>
+              <button type="submit" class="btn">发送</button>
+            </div>
+            <p id="errMessage"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

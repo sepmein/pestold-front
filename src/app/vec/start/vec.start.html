@@ -1,0 +1,151 @@
+<div class="container vecStart">
+  <div ng-include="'components/navbar/navbar.html'"></div>
+  <section class="row">
+    <div class="col-md-8">
+      <form id="in" class="well form-horizontal">
+        <fieldset>
+          <legend>原药</legend>
+          <div class="controlgroup">
+            <label for="concentrationRaw" class="control-label focused">原药浓度</label>
+
+            <div class="controls">
+              <div class="input-append">
+                <input ng-model="concentrationRaw" id="concentrationRaw" type="number" name="concentrationRaw"
+                       step="any" min="0"
+                       autofocus="autofocus" required="required" class="span2"/><span class="add-on">%</span>
+              </div>
+              <p class="help-block">原药的有效含量</p>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>配制浓度</legend>
+          <div class="controlgroup">
+            <label for="concentrationHigh" class="control-label">最高浓度</label>
+
+            <div class="controls">
+              <input ng-model="concentrationHigh" id="concentrationHigh" type="number" name="concentrationHigh"
+                     step="any" min="0"
+                     required="required" class="span2"/>
+              <select ng-model="concentrationHighUnit" id="concentrationHighUnit" name="concentrationHighUnit">
+                <option>mg/L</option>
+                <option>mg/mL</option>
+                <option>ppm</option>
+                <option>%</option>
+              </select>
+
+              <p class="help-block">所要配制的终浓度药剂中，浓度最高的药剂的值</p>
+            </div>
+          </div>
+          <!--div.controlgroup
+          label.control-label(for='concentrationLow') 最低浓度
+          div.controls
+              input.span2#concentrationLow(type='number')
+              p.help-block some help text for test
+          -->
+          <div class="controlgroup">
+            <label for="dose" class="control-label">剂量</label>
+
+            <div class="controls">
+              <input ng-model="dose" id="dose" type="number" name="dose" step="any" min="0.0000000001"
+                     required="required"
+                     class="span2"/>
+              <select ng-model="doseUnit" id="doseUnit" name="doseUnit">
+                <option>mL</option>
+                <option>L</option>
+                <option>uL</option>
+              </select>
+
+              <p class="help-block">每终浓度药剂所需配制的剂量</p>
+            </div>
+          </div>
+          <div class="controlgroup">
+            <label for="groupNumber" class="control-label">组数</label>
+
+            <div class="controls">
+              <div class="input-append">
+                <input ng-model="groupNumber" id="groupNumber" type="number" name="groupNumber" required="required"
+                       min="1"
+                       class="span2"/><span class="add-on">组</span>
+              </div>
+              <p class="help-block">所需配制终浓度的组数</p>
+            </div>
+          </div>
+          <div class="controlgroup">
+            <label for="propotionRate" class="control-label">组间比</label>
+
+            <div class="controls">
+              <input ng-model="propotionRate" id="propotionRate" type="number" name="propotionRate" step="any"
+                     min="1.0000000001"
+                     required="required" class="span2"/>
+
+              <p class="help-block">任意相邻两终浓度组之间的浓度比</p>
+            </div>
+          </div>
+          <div class="form-actions"><a id="sub" data-toggle="modal" data-target="#alertModal"
+                                       class="btn btn-large btn-primary"><i class='icon-pencil icon-white'></i>
+            计算</a>&nbsp;&nbsp;&nbsp;<a href="/vec" class="cancel btn btn-large"><i class='icon-remove icon-white'></i>
+            取消</a>
+
+            <div id="alertModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel"
+                 aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-lable="Close"><span
+                      aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="alertModalLabel">使用须知</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>虽然经过精心设计以及测试，但是Vec并不能保证计算结果<span class="badge badge-success">100%</span>准确。</p>
+
+                    <p>若在实验前使用Vec，请自行验证Vec生成配方的正确性。以免导致实验失败等不良结果。</p>
+
+                    <p>由于未验证配方的正确性所造成的损失，Vec概不负责。望谅解。</p>
+
+                    <p>Vec会继续改进以提高正确性。</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal">关闭</button>
+                    <button class="btn btn-primary" type="button" ng-click="submitRequest()">同意并继续</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <h5><i class="icon-asterisk"></i><b>说明</b></h5><br/>
+
+      <p>Vec目前只支持终浓度为等比方式分布的药剂配制</p>
+      <hr/>
+      <h5><i class="icon-eye-open"></i><b>示例</b></h5><br/>
+
+      <p>使用95%溴氰聚酯，需配制以下浓度药剂各1mL：</p>
+      <ul>
+        <li>0.008 mg/L</li>
+        <li>0.004 mg/L</li>
+        <li>0.002 mg/L</li>
+        <li>0.001 mg/L</li>
+        <li>0.0005 mg/L</li>
+      </ul>
+      <p>则在左侧填写：</p>
+
+      <p>原药浓度为：95 %，</p>
+
+      <p>最高浓度为：0.008 mg/L，</p>
+
+      <p>剂量为： 1 mL，</p>
+
+      <p>组数为： 5 组，</p>
+
+      <p>组间比为： 2 ， 0.008/0.004 ＝ 2</p>
+
+    </div>
+  </section>
+
+</div>
+<script src="../bower_components/bootstrap/js/modal.js"></script>
+
